@@ -1,5 +1,4 @@
 from models.buku_model import BukuModel
-from models.anggota_model import AnggotaModel
 
 model = BukuModel()
 
@@ -32,14 +31,3 @@ print("Data berhasil dihapus!")
 print("\n=== Daftar Buku Setelah Delete ===")
 for buku in model.get_all_buku():
     print(f"[{buku['id_buku']}] {buku['judul']} - {buku['penulis']} ({buku['tahun_terbit']})")
-
-# 5. Menguji AnggotaModel (Create dan Read)
-anggota_model = AnggotaModel()
-
-print("\nMenambahkan data anggota...")
-anggota_model.create_anggota("Budi Santoso", "Jl. Merdeka No. 10")
-print("Data anggota berhasil disimpan!")
-
-print("\n=== Daftar Anggota ===")
-for anggota in anggota_model.get_all_anggota():
-    print(f"[{anggota['id_anggota']}] {anggota['nama']} - {anggota['alamat']}")
