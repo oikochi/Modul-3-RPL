@@ -11,7 +11,6 @@ def test_create_buku_berhasil():
     model.conn = MagicMock()
     mock_cursor = MagicMock()
     model.conn.cursor.return_value = mock_cursor
-
     # Menjalankan fungsi create_buku
     hasil = model.create_buku("Buku Testing", "Penulis QA", 2026)
 
