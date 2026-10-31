@@ -15,7 +15,7 @@ def test_autentikasi_pengguna_berhasil():
     model = UserModel()
     model.conn = MagicMock()
     mock_cursor = MagicMock()
-s
+
     # Simulasi kembalian data dari database ketika username & password cocok
     mock_cursor.fetchone.return_value = {
         "id_user": 1,
@@ -29,4 +29,3 @@ s
     assert hasil is not None
     assert hasil["username"] == "petugas"
     assert hasil["role"] == "admin"
-    
