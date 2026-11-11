@@ -40,6 +40,9 @@ class BukuView(ctk.CTk):
         self.btn_hapus = ctk.CTkButton(self.frame_kiri, text="Hapus Data (Delete)", fg_color="red")
         self.btn_hapus.pack(pady=10, padx=15, fill="x")
 
+        self.btn_logout = ctk.CTkButton(self.frame_kiri, text="Logout", fg_color="darkred")
+        self.btn_logout.pack(pady=10, padx=15, fill="x")
+
         # -----------------------------------------
         # FRAME KANAN: TABEL DAFTAR BUKU
         # -----------------------------------------
@@ -81,12 +84,11 @@ class BukuView(ctk.CTk):
         for b in data:
             self.tabel.insert("", "end",
                               values=(b["id_buku"], b["judul"], b["penulis"], b["tahun_terbit"]))
-
     def id_terpilih(self):
         pilihan = self.tabel.selection()
         if not pilihan:
             return None
-        return self.tabel.item(pilihan[0])["values"][0]
+        return int(pilihan[0])  # iid = id_buku asli, bukan nomor urut tampilan
 
     def isi_form_dari_pilihan(self, event=None):
         pilihan = self.tabel.selection()
@@ -97,7 +99,6 @@ class BukuView(ctk.CTk):
         self.entry_judul.insert(0, judul)
         self.entry_penulis.insert(0, penulis)
         self.entry_tahun.insert(0, tahun)
-
 
 # Blok eksekusi untuk menguji tampilan grafis
 if __name__ == "__main__":
