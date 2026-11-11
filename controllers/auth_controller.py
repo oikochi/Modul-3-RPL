@@ -17,13 +17,19 @@ class AuthController:
             messagebox.showwarning("Peringatan", "Username dan Password wajib diisi!")
             return
 
+        if not self.model.conn:
+            detail = self.model.db.last_error or "Penyebab tidak diketahui."
+            messagebox.showerror(
+                "Koneksi Gagal",
+                f"Tidak dapat terhubung ke database.\n\nDetail: {detail}"
+            )
+            return
+
         user = self.model.autentikasi(username, password)
 
         if user:
             messagebox.showinfo("Login Berhasil", f"Selamat datang, {user['username']} ({user['role']})!")
-            # Tutup jendela Login
             self.view.destroy()
-            # Buka jendela Utama Perpustakaan dengan mengirimkan role pengguna
             app_utama = BukuController(user_role=user['role'])
             app_utama.run()
         else:
